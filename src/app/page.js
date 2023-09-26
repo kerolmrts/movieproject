@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import Banner from "@/Components/Banner";
 
 
+
 export default function Home() {
   const [movies, setMovies] = useState([]);
 
@@ -38,8 +39,8 @@ export default function Home() {
                         dataLancamento={movie.dataLancamento}
                         srcImage={movie.imagem}
                         id={movie.id}
-                      />
-                    </li>
+                        />
+                                       </li>
                   );
                 })}
             </ul>

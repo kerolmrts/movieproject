@@ -8,6 +8,7 @@ import { SideBar } from "@/Components/Sidebar";
 import { Footer } from "@/Components/Footer";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import StarRating from "@/Components/StarRating";
 
 function Details() {
   const router = useRouter();
@@ -37,13 +38,14 @@ function Details() {
           <section className="flex items-center gap-5 flex-col lg:flex-row">
             <img src={movie.imagem} alt={movie.titulo} className="w-72 m-10" />
             <div className="flex flex-col items-start gap-2">
+              <StarRating/>
               <strong className="text-xl">{movie.titulo}</strong>
               <p>Estreia: {movie.dataLancamento}</p>
               {movie.sinopse ? (
                 <p className="items-justify mr-10">Sinopse: {movie.sinopse}</p>
               ) : (
                 <p> Sinopse não disponível</p>
-              )}
+                )}
             </div>
           </section>
         </div>
