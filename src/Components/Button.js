@@ -1,8 +1,10 @@
 import React from "react";
 
-export function Button({ children }) {
+export function Button({ children,...rest }) {
   return (
-    <button className=" bg-black/40 p-1">
+    
+    <button {...rest}
+    className="w-full rounded bg-zinc-500/40 p-1">
       {children}
     </button>
   );

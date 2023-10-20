@@ -14,15 +14,7 @@ export function Avatar({ srcImage, ...rest }) {
       >
    
       </img>
-      <label
-        htmlFor="avatar"
-        className="absolute right-0 bottom-0 w-10 h-10 bg-zinc-600 rounded-full flex items-center justify-center cursor-pointer"
-             >
-       <FiCamera/>
-        
-        <input id="avatar" type="file" className="hidden"
-      />
-      </label>
+     
       </div>
     </div>
   );

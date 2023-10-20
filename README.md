@@ -21,4 +21,4 @@ Neste projeto, explorou-se os conceitos fundamentais de React, juntamente as fer
 Este projeto foi desenvolvido por Kerolayne Martins como parte da disciplina de Fundamentos de React do Instituto Infnet.
 
 
-
+![GIF](https://github.com/kerolmrts/movieproject/blob/main/public/readme.gif)

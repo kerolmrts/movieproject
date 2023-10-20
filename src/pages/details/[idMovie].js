@@ -1,14 +1,12 @@
-"use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Drawer from "@/Components/Drawer";
 import { getFilmePorId } from "@/services/movies";
-import { useState, useEffect } from "react";
 import Layout from "@/Components/Layout";
-import { SideBar } from "@/Components/Sidebar";
 import { Footer } from "@/Components/Footer";
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import StarRating from "@/Components/StarRating";
+import "tailwindcss/tailwind.css";
 
 function Details() {
   const router = useRouter();
@@ -16,43 +14,61 @@ function Details() {
   const movieID = router.query.idMovie;
 
   useEffect(() => {
-    if (movieID) {
-      const result = getFilmePorId(Number(movieID));
-      setMovie(result);
-    }
+    const fetchData = async () => {
+      if (movieID) {
+        const result = await getFilmePorId(Number(movieID));
+        setMovie(result);
+        console.log(movie)
+      }
+    };
+
+    fetchData();
   }, [movieID]);
 
+  const [isDrawerOpen, setIsDrawerOpen] = useState();
+  const handleMenuToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+ 
   return (
     <Layout>
-      <main className="h-full min-h-screen flex flex-1">
-        <SideBar />
-        <div>
-          <div className="flex mt-10 items-center mx-5">
-            <Link href="/">
-              <ChevronLeft />
-            </Link>
+      <main className="h-full min-h-screen">
+        <div className="flex items-start">
+          <div className="flex">
+            <Drawer
+              className="md:flex-col"
+              isOpen={isDrawerOpen}
+              onClose={handleMenuToggle}
+            ></Drawer>
+            <Link href="/">Voltar</Link>
             <h1 className="font-semibold text-3xl m-10">
-              <p>Categoria: {movie.categoria}</p>
+              <p>Filme:</p>
             </h1>
           </div>
           <section className="flex items-center gap-5 flex-col lg:flex-row">
-            <img src={movie.imagem} alt={movie.titulo} className="w-72 m-10" />
+            {movie && (
+              <img
+                src={movie.imagem}
+                alt={movie.titulo}
+                className="w-72 m-10"
+              />
+            )}
             <div className="flex flex-col items-start gap-2">
-              <StarRating/>
-              <strong className="text-xl">{movie.titulo}</strong>
-              <p>Estreia: {movie.dataLancamento}</p>
-              {movie.sinopse ? (
+              <StarRating voteAverage={movie?.Votos || 0} totalStars={10} />
+              {movie && <strong className="text-xl">{movie.titulo}</strong>}
+              {movie && <p>Estreia: {movie.dataLancamento}</p>}
+              {movie && movie.sinopse ? (
                 <p className="items-justify mr-10">Sinopse: {movie.sinopse}</p>
               ) : (
-                <p> Sinopse não disponível</p>
-                )}
+                <p>Sinopse não disponível</p>
+              )}
             </div>
           </section>
         </div>
       </main>
-
       <Footer />
     </Layout>
   );
 }
+
 export default Details;

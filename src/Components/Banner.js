@@ -1,8 +1,8 @@
 import React from "react";
 
-function Banner() {
+function Banner({children}) {
   return (
-    <div className="relative">
+    <div style={{zIndex:10}}className="relative">
       <video
         autoPlay
         loop
@@ -12,10 +12,8 @@ function Banner() {
         className="w-full h-auto"
       ></video>
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
-      <div className="absolute flex items-center justify-center text-6xl -bottom-36 inset-0 z-10">
-        <h1 className="text-white text-shadow-lg border-4 border-gray-800 p-4 transition-transform hover:scale-105 cursor-pointer">
-          Comunidade de cinéfilos
-        </h1>
+      <div className="absolute flex items-center justify-center text-6xl -bottom-36 inset-0">
+        {children}
       </div>
     </div>
   );

@@ -1,61 +1,52 @@
 import React from "react";
+import "tailwindcss/tailwind.css"
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import Layout from "@/Components/Layout";
 import { InputButton } from "@/Components/InputButton";
 import { Input } from "@/Components/Input";
 import { Avatar } from "@/Components/Avatar";
-
-import { SideBar } from "@/Components/Sidebar";
+import Drawer from "@/Components/Drawer";
+import { useState } from "react";
+import { useSession } from 'next-auth/react';
 import { Footer } from "@/Components/Footer";
+import CompleteProfileForm from "@/Components/CompleteProfileForm";
 
 
 function Perfil() {
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState();
+  const handleMenuToggle  = () => {
+    setIsDrawerOpen(!isDrawerOpen)
+  }
+  const {data: session} = useSession();
+
   return (
     <Layout>
       <div className="h-full min-h-screen flex flex-col">
         <div className="flex flex-1">
-          <SideBar />
- 
+        <Drawer className= "md:flex-col" isOpen={isDrawerOpen} onClose={handleMenuToggle}></Drawer>
+        {session? (
               <div className="flex w-full flex-col  mx-5 my-10">
-              <h1 className="flex font-semibold text-3xl m-10">Faça login e acesse conteúdos exclusivos </h1>
-                     <div className="flex w-full my-10 items-center justify-center">  
-                <form>
-                  <Avatar srcImage="https://github.com/kerolmrts.png" />
-
-                  <div>
-                    <Input placeholder="Nome" type="text" icon={FiUser}/>
-                  </div>
-
-                    <div className="flex">
-                      <Input placeholder="E-mail" type="text" icon={FiMail} />
-                    </div>
-                 
-                    <div className="flex">
-                      <Input
-                        placeholder="Senha"
-                        type="password"
-                        icon={FiLock}
-                      />
-                    </div>
-                   
-                  <InputButton
-                    title="Salvar"
-                   
-                  >
-                    Salvar
-                  </InputButton>
-                </form>
-                </div>
-                </div>
-            
+                   <h2 className="flex w-full flex-col mx-5 my-10">
+                 {session.user.name}
               
-        
-        </div>
+                </h2>
+              <h1 className="flex font-semibold text-3xl m-10">Complete seu cadastro </h1>
+                     <div className="flex w-full my-10 items-center justify-center">  
+              <CompleteProfileForm user={session.user}/>
+                                            
+          </div>
+          </div>
+        ) : (
+          
+          <h1>Não logado</h1>
+        )}
       </div>
-      <Footer
-          />
-      </Layout>
-  );
+    </div>
+    <Footer />
+  </Layout>
+);
 }
 
+      
 export default Perfil;

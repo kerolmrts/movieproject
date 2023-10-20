@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const Star = ({ selected = false, onSelect = () => {} }) => (
-  <FaStar color={selected ? "red" : "grey"} onClick={onSelect} />
+const Star = ({ selected = false }) => (
+  <FaStar color={selected ? "red" : "grey"} />
 );
 
-export default function StarRating({ totalStars = 5 }) {
-  const [selectedStars, setSelectedStars] = useState(0);
+export default function StarRating({ voteAverage, totalStars = 10 }) {
+  const starPercentage = (voteAverage / 10) * 100;
 
-  const createArray = (length) => [...Array(length)];
 
   return (
     <div className="flex">
-      {createArray(totalStars).map((n, i) => (
-        <Star
-          key={i}
-          selected={selectedStars > i}
-          onSelect={() => setSelectedStars(i + 1)}
-        />
+      {[...Array(totalStars)].map((_, i) => (
+        <Star key={i} selected={i < starPercentage / (100 / totalStars)} />
       ))}
       <p className="ml-2 text-zinc-700">
-        ({selectedStars} de {totalStars} estrelas)
+        ({voteAverage} de 10 estrelas)
       </p>
     </div>
   );

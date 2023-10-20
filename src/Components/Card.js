@@ -17,8 +17,20 @@ export function Card({ titulo, srcImage, dataLancamento, id }) {
           </div>
         </Link>
         <div>
-          <span className="items-center font-semibold text-lg">{titulo}</span>
-          <p className="items-center text-zinc-400">Lançamento: {dataLancamento}</p>
+          {dataLancamento ? (
+            <div>
+              <span className="items-center font-semibold text-lg">
+                {titulo}
+              </span>
+              <p className="items-center text-zinc-400">
+                Lançamento: {dataLancamento}
+              </p>
+            </div>
+          ) : (
+            <p className="items-center text-zinc-400">
+              Data de Lançamento não disponível
+            </p>
+          )}
         </div>
       </div>
     </section>
