@@ -19,19 +19,9 @@ function Buscador() {
   const [shouldRender, setShouldRender] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const API_KEY = "1e8ef38560c7a1cad6c475d54fe5430f";
   const BASE_URL = "https://api.themoviedb.org/3";
   const API_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
-  const searchURL = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=`;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-=======
-   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
->>>>>>> b42e777 (Revert "update Buscador")
-=======
-   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
->>>>>>> b42e7772df4c9cc20c8257a3ffe414f13a47490d
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {

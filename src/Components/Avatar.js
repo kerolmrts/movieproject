@@ -11,9 +11,9 @@ export function Avatar({ srcImage, ...rest }) {
         src={srcImage}
         alt="Foto do usuário"
         className="w-36 rounded-full"
-      >
+      />
    
-      </img>
+
      
       </div>
     </div>

@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { Home as HomeIcon, Menu, Search, Tv, User } from "lucide-react";
 import { ThemeContext } from "@/app/Contexts/ThemeContext";
-import { Footer } from "../Footer";
-// import { Container, Button } from "./styles";
+
 
 function Appbar({ onMenuToggle }) {
   const { theme } = useContext(ThemeContext);

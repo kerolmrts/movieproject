@@ -1,16 +1,13 @@
 
-require('dotenv').config();
-
-
 export async function getFilmes() {
-  console.log("Aqui são as variáveis de ambiente:", process.env);
+  
   try {
-    console.log("Aqui é a chave:", process.env.TMDB_AUTH_TOKEN);
+  
     const options = {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Authorization': `Bearer `
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN}`
       }
     };
 
@@ -50,11 +47,7 @@ export async function getMovieTitle() {
     method: 'GET',
     headers: {
       accept: 'application/json',
-<<<<<<< HEAD
-      Authorization: 'Bearer '
-=======
-      Authorization: 'Bearer '
->>>>>>> b42e777 (Revert "update Buscador")
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_AUTH_TOKEN}`
     }
   };
 

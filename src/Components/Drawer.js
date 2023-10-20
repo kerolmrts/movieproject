@@ -2,21 +2,25 @@ import { Home as HomeIcon, Search, User, ArrowRight, ArrowLeft } from 'lucide-re
 import Link from 'next/link';
 import React, {useContext} from "react";
 import { ThemeContext } from '@/app/Contexts/ThemeContext';
-import { Button } from './Button';
-import { signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Drawer = ({ isOpen, onClose, ...rest}) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const drawerStyle = {
-    // transform: isOpen ? 'translateX(0%)' : 'translateX(-25%)',
-    marginLeft: isOpen ? '0' : '-230px',
+  marginLeft: isOpen ? '0' : '-230px',
   };
-
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const handleSignOut = async () => {
+   await signOut(); 
+   router.push('/Login'); 
+  };
   return (
     
          <aside 
          {...rest}
-         className={`relative w-72 px-3 pt-20 h-full min-h-screen overflow-auto shadow-lg ${theme === 'dark' ? 'bg-zinc-800 text-zinc-200' : 'bg-white text-zinc-800'}`} style={drawerStyle}>
+         className={`relative w-72 px-3 pt-20 min-h-screen overflow-auto shadow-lg ${theme === 'dark' ? 'bg-zinc-800 text-zinc-200' : 'bg-white text-zinc-800'}`} style={drawerStyle}>
        
         <button
           onClick={onClose}
@@ -78,31 +82,29 @@ const Drawer = ({ isOpen, onClose, ...rest}) => {
 
         <div className="mt-6 pt-6  flex flex-col gap-1">
           <p>Categorias</p>
-          <a href="/#acao" className="text-sm hover:text-zinc-100">
+          <Link href="/#acao" className="text-sm hover:text-zinc-100">
             Ação
-          </a>
-          <a href="/#comedia" className="text-sm hover:text-zinc-100">
+          </Link>
+          <Link href="/#comedia" className="text-sm hover:text-zinc-100">
             Comédia
-          </a>
-          <a href="/#drama" className="text-sm hover:text-zinc-100">
+          </Link>
+          <Link href="/#drama" className="text-sm hover:text-zinc-100">
             Drama
-          </a>
+          </Link>
 
-          <a href="/#romance" className="text-sm hover:text-zinc-100">
+          <Link href="/#romance" className="text-sm hover:text-zinc-100">
             Romance
-          </a>
+          </Link>
 
-          <a href="/#terror" className="text-sm hover:text-zinc-100">
+          <Link href="/#terror" className="text-sm hover:text-zinc-100 mb-5">
             Terror
-          </a>
+          </Link>
         </div>
-        <Button                 
-                  onClick={() => {
-                    signOut();
-                  }}
+        <button                 
+                  onClick={handleSignOut}
                 >
-                  Sign out
-                </Button>
+                 Sair
+                </button>
         
       </aside>
     

@@ -1,5 +1,4 @@
 "use client";
-import Drawer from "@/Components/Drawer";
 import Layout from "@/Components/Layout";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -37,19 +36,17 @@ const LoginPage = () => {
     return null;
   }
 
- 
   if (session) {
     return (
       <Layout>
-          <Appbar/>
-          <div className="h-full min-h-screen flex flex-col">
-            <div className="flex flex-1">
-              <div className="flex w-full flex-col mx-5 my-10">
-                <h2 className="flex w-full flex-col mx-5 my-10">
-                  Logado como: {session.user.name}, e-mail: {session.user.email}
-              
-                </h2>
-                <div className="flex flex-col items-center gap-5">
+        <Appbar />
+        <div className="h-full min-h-screen grid">
+          <div className="flex flex-1">
+            <div className="flex w-full flex-col mx-5 my-10">
+              <h2 className="flex w-full flex-col mx-5 my-10">
+                Logado como: {session.user.name}, e-mail: {session.user.email}
+              </h2>
+              <div className="flex flex-col items-center gap-5">
                 <Avatar
                   srcImage={session.user.image}
                   width={200}
@@ -57,53 +54,49 @@ const LoginPage = () => {
                   alt="User's image"
                 />
                 <div className="flex gap-2">
-                <Button          
-                  onClick={() => router.push("/Perfil")}
-                >
-                 Completar Cadastro
-                </Button>
-                <Button                 
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  Sign out
-                </Button>
-                </div>
+                  <Button onClick={() => router.push("/Perfil")}>
+                    Completar Cadastro
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      signOut();
+                    }}
+                  >
+                    Sign out
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
-          <Footer />
-        </Layout>
-     
+        </div>
+        <Footer />
+      </Layout>
     );
   }
 
   return (
     <Layout>
-          <Appbar/>
-    <div className="h-full min-h-screen flex flex-col">
-      <div className="flex flex-1">
-      <div className="flex w-full flex-col  mx-5 my-10">
-              <h1 className="flex font-semibold text-3xl m-10">Faça login e acesse conteúdos exclusivos </h1>
-                     <div className="flex w-full my-10 items-center justify-center">  
-        <Button
-                onClick={() => signIn('google')}>
-          Sign in
-        </Button>
-        
-      </div>
-      </div>
-      </div>
+      <Appbar />
+      <main className="h-full min-h-screen grid grid-cols-3">
+  <div className="col-span-1 p-6"> 
+    <h1 className="p-20 font-extrabold text-4xl text-center text-zinc-500 ">
+    Junte-se a nós e participe da comunidade de cinéfilos para desvendar as maravilhas do mundo do cinema!
+    </h1>
+    <h2 className="font-bold  text-center text-zinc-500">
+    Faça login para acessar o conteúdo:
+    </h2>
+    <div className="flex w-full my-10 items-center justify-center">
+      <Button onClick={() => signIn("google")}>Sign in</Button>
     </div>
-    <Footer
-        />
-     
-      </Layout>
-   
+  </div>
+  <div className="col-span-2">
+   <img src="img_movie.jpg"
+   className="w-full h-screen"/>
+  </div>
+</main>
+      <Footer />
+    </Layout>
   );
 };
 
 export default LoginPage;
-

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import AvatarEditor from "react-avatar-editor";
 import { Button } from "./Button";
 import { Input } from "./Input";
+import { InputButton } from "./InputButton";
 
 const ZoomSlider = ({ zoom, onZoomChange }) => {
   return (
@@ -134,7 +135,7 @@ const CompleteProfileForm = ({ user }) => {
         </>
       )}
 
-      <div className="flex justify-between mb-4">
+      <div className="flex gap-2 mb-4">
         <Button type="button" onClick={handleCancel}>
           Cancelar
         </Button>

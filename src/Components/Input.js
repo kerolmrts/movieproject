@@ -3,7 +3,7 @@ import React from "react";
 
 export function Input({ icon: Icon, ...rest }) {
   return (
-    <div className="px-4 mt-2 h-8 w-full rounded flex items-center bg-zinc-700 text-gray-300 mb-3 rounded-10">
+    <div className="px-4 mt-2 h-8 w-full rounded flex items-center bg-zinc-700 text-gray-00 mb-3 rounded-10">
         {Icon && <Icon size={20} />}
       <input
         {...rest}

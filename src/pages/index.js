@@ -61,7 +61,7 @@ export default function Home() {
       <div className="h-full flex flex-col">
         <div className="flex flex-1">
         <Drawer
-            className="h-full md:flex-col"
+            className="md:flex-col"
             isOpen={isDrawerOpen}
             onClose={handleMenuToggle}
           ></Drawer>

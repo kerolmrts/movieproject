@@ -4,7 +4,7 @@ export function Button({ children,...rest }) {
   return (
     
     <button {...rest}
-    className="w-full rounded bg-zinc-500/40 p-1">
+    className="w-30 rounded bg-zinc-500/40 p-1">
       {children}
     </button>
   );
