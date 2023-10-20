@@ -20,7 +20,9 @@ function Buscador() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const BASE_URL = "https://api.themoviedb.org/3";
+  const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
   const API_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
+  const searchURL = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=`;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [movies, setMovies] = useState([]);
 
