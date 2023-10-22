@@ -1,5 +1,5 @@
 "use client" 
-import { ThemeProvider } from '@/app/Contexts/ThemeContext'
+import { ThemeProvider } from '@/Contexts/ThemeContext'
 import './globals.css'
 import { SessionProvider } from 'next-auth/react'
 

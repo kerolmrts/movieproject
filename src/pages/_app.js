@@ -1,5 +1,5 @@
 import { SessionProvider } from "next-auth/react";
-import { ThemeProvider } from '@/app/Contexts/ThemeContext';
+import { ThemeProvider } from '@/Contexts/ThemeContext';
 
 function App({ Component, pageProps: { session, ...pageProps } }) {
   return (

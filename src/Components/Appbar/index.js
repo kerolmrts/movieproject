@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { Home as HomeIcon, Menu, Search, Tv, User } from "lucide-react";
-import { ThemeContext } from "@/app/Contexts/ThemeContext";
+import { ThemeContext } from "@/Contexts/ThemeContext";
 
 
 function Appbar({ onMenuToggle }) {

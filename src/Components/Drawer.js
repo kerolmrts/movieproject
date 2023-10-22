@@ -1,7 +1,7 @@
 import { Home as HomeIcon, Search, User, ArrowRight, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import React, {useContext} from "react";
-import { ThemeContext } from '@/app/Contexts/ThemeContext';
+import { ThemeContext } from '@/Contexts/ThemeContext';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 

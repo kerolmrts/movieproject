@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "@/app/Contexts/ThemeContext";
+import { ThemeContext } from "@/Contexts/ThemeContext";
 
 export function Footer() {
   const { theme, toggleTheme } = useContext(ThemeContext);
